@@ -4,15 +4,16 @@ import { createRequire } from 'module'
 import axios from 'axios'
 import dotenv from 'dotenv'
 import mongoose from 'mongoose'
+import ChannelScheme from './models/channel.js'
 
 const port = parseInt(process.env.PORT, 10) || 3000
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler()
 
-const require = createRequire(import.meta.url)
-
 dotenv.config()
+
+// youtube api key
 const key = process.env.API_KEY
 
 const getPlaylistID = async (channel, key, callback) => {
@@ -51,6 +52,7 @@ app.prepare().then(() => {
 
   const db = mongoose.connection
 
+
   db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
   server.get('/getchannelpid', async (req, res) => {
@@ -75,6 +77,20 @@ app.prepare().then(() => {
         res.send('Bad channel ID').status(501)  
       }
     })
+  })
+
+  server.post('/postchannel', async (req, res) => {
+    const channelName = '1Veritasium'
+    const channelToInsert = new ChannelScheme({ name: channelName, 
+                                                pid: 'oI_X2cMHNe0', 
+                                                recentVideos: []})
+
+    channelToInsert.save((err) => {
+      console.log('Error inserting document')
+      res.send('Failed to insert document').status(501)
+    })
+
+    res.send("Document inserted").status(200)
   })
 
   server.all('*', (req, res) => {
