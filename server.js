@@ -10,22 +10,28 @@ const handle = app.getRequestHandler()
 
 const require = createRequire(import.meta.url)
 const key = require('./key.json')
-const channel = '1Veritasium'
 
-const get_url = `https://www.googleapis.com/youtube/v3/channels?part=contentDetails&forUsername=${channel}&key=${key['api_key']}`
+const getPlaylistID = async (channel, key, callback) => {
+  const get_url = `https://www.googleapis.com/youtube/v3/channels?part=contentDetails&forUsername=${channel}&key=${key['api_key']}`
+
+  axios.get(get_url)
+    .then((res) => {
+      callback(res.data.items[0]['contentDetails']['relatedPlaylists']['uploads'])
+    })
+    .catch(err => {
+      console.log(err)  
+    })
+}
+
 
 app.prepare().then(() => {
   const server = express()
 
-  server.get('/get_vids', async (req, res) => {
-    axios.get(get_url)
-      .then((res) => {
-        console.log(res.data.items[0]['contentDetails']['relatedPlaylists']['uploads'])
-      })
-      .catch(err => {
-        console.log(err)  
-      })
-    res.send("HELLO")
+  server.get('/getvids', async (req, res) => {
+    const channel = '1Veritasium'
+    await getPlaylistID(channel, key, (channel_id) => {
+      res.send(channel_id) 
+    })
   })
 
   server.all('*', (req, res) => {
