@@ -10,8 +10,8 @@ const Channel = new Schema({
     type: String
   },
   recentVideos: [String]
-})
+}, { collection: 'channels' })
 
-const ChannelSchema = mongoose.model('concept', Channel)
+const ChannelSchema = mongoose.model('channels', Channel)
 export default ChannelSchema
 

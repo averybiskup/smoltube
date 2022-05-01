@@ -1,0 +1,73 @@
+#home-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0px;
+  margin: 0px;
+  margin-top: 200px;
+}
+
+#home-input-container {
+  display: flex;
+  justify-content: center;
+}
+
+#home-input {
+  border: none;  
+  border-bottom: 1px solid black;
+  font-size: 2em;
+  transition: border 1s ease;
+  width: 400px;
+}
+
+#home-input:focus {
+  border-bottom: 1px solid white;
+  outline: none;
+}
+
+#home-add-button {
+  border: none;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
+}
+
+#home-add-button:hover, #home-save-button:hover {
+  border: none;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+}
+
+#home-add-button, #home-save-button {
+  background-color: white;
+  width: 80px;
+}
+
+#home-save-button {
+  border: none;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  background-color: white;
+}
+
+#new-channels-container {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  display: relative;
+  flex: 0;
+}
+
+#new-channels-list {
+  display: flex;
+  justify-content: flex-start;
+  width: 560px;
+  flex-direction: column;
+  font-size: 1.3em;
+  font-family: verdana;
+}
+
+body {
+  margin: 0px;  
+}

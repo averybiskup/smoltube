@@ -52,7 +52,6 @@ app.prepare().then(() => {
 
   const db = mongoose.connection
 
-
   db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
   server.get('/getchannelpid', async (req, res) => {
@@ -79,18 +78,22 @@ app.prepare().then(() => {
     })
   })
 
-  server.post('/postchannel', async (req, res) => {
+  server.post('/postchannels', async (req, res) => {
     const channelName = '1Veritasium'
     const channelToInsert = new ChannelScheme({ name: channelName, 
                                                 pid: 'oI_X2cMHNe0', 
                                                 recentVideos: []})
 
-    channelToInsert.save((err) => {
-      console.log('Error inserting document')
-      res.send('Failed to insert document').status(501)
+    await channelToInsert.save((err, data) => {
+      if (err) {
+        console.log('Error inserting document:', err, data)
+        res.status(501).send('Failed to insert document')
+      } else {
+        console.log('Added document')
+        res.status(200).send('Added document')
+      }
     })
 
-    res.send("Document inserted").status(200)
   })
 
   server.all('*', (req, res) => {

@@ -1,6 +1,7 @@
 {
   "private": true,
   "type": "module",
+  "proxy": "http://localhost:3000",
   "scripts": {
     "dev": "node ./server/server.js",
     "build": "next build",
