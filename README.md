@@ -11,10 +11,10 @@ do something like watch netflix, you should always know what to watch before
 sitting down in order to spend less time trying to find something  
 
 ### TODO  
-[] hook up to youtube api in order to get recent videos given channel id  
-[] hook up mongodb to store users' youtube channel  
-[] create front end inputs for users to add channels  
-[] create video viewing page  
-[] create autoplay feature that will play users videos from the day
+- [x] hook up to youtube api in order to get recent videos given channel id  
+- [x] hook up mongodb to store users' youtube channel  
+- [x] create front end inputs for users to add channels  
+- [] create video viewing page  
+- [] create autoplay feature that will play users videos from the day
   automatically  
-[] make a feature where users can limit videos per day  
+- [] make a feature where users can limit videos per day  
