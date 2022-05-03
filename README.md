@@ -18,3 +18,5 @@ sitting down in order to spend less time trying to find something
 - [ ] create autoplay feature that will play users videos from the day
   automatically  
 - [ ] make a feature where users can limit videos per day  
+- [ ] add login so people can save their subscriptions
+- [ ] create list to show subscriptions
