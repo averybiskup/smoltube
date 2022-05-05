@@ -21,7 +21,6 @@
 }
 
 #home-input:focus {
-  border-bottom: 1px solid white;
   outline: none;
 }
 
