@@ -1,17 +1,19 @@
-import mongoose from 'mongoose'
+import mongoose from "mongoose";
 
-const Schema = mongoose.Schema
+const Schema = mongoose.Schema;
 
-const Channel = new Schema({
-  name: {
-    type: String
-  }, 
-  pid: {
-    type: String
+const Channel = new Schema(
+  {
+    name: {
+      type: String,
+    },
+    pid: {
+      type: String,
+    },
+    recentVideos: [String],
   },
-  recentVideos: [String]
-}, { collection: 'channels' })
+  { collection: "channels" }
+);
 
-const ChannelSchema = mongoose.model('channels', Channel)
-export default ChannelSchema
-
+const ChannelSchema = mongoose.model("channels", Channel);
+export default ChannelSchema;
