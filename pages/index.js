@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { useState } from 'react'
 import axios from 'axios'
 
+// Add a channel to user's profile
 const postChannels = async (user, channels) => {
 
   const params = {
@@ -12,6 +13,7 @@ const postChannels = async (user, channels) => {
   let res = await axios.post('/postchannels', params)
 }
 
+// Check if user exists on server, and login if so
 const login = async (user) => {
   let res = await axios.get('/login?username=' + user)
 }
@@ -22,12 +24,14 @@ const Home = () => {
   const [channels, setChannels] = useState([])
   const [user, setUser] = useState('')
 
+  // State modification helper function
   const addChannel = (name) => {
     if (channels.indexOf(name) == -1) {
       setChannels(channels => [...channels, name])  
     }
   }
 
+  // State modification helper function
   const saveChannels = (channelsToAdd) => {
     postChannels('testuser', channelsToAdd)
     for (let i = 0; i < channelsToAdd.length; i++) {
@@ -43,8 +47,8 @@ const Home = () => {
                placeholder="user name" 
                id="user-name-input"
                value={user} />
-        <button id="user-name-button" onClick={() => { login(user) }}>sign in</button>
-        
+        <button id="user-name-button" 
+                onClick={() => { login(user) }}>sign in</button>
       </div>
       <div id="home-input-container">
         <input onChange={(e) => { setNewChannel(e.target.value) }} 
@@ -61,7 +65,9 @@ const Home = () => {
         <div id="new-channels-list">
           {
             channels.map((channel, i) => 
-              <div className="new-channel-item" key={i} id={"new-channel-" + i}>{channel}</div>
+              <div className="new-channel-item" 
+                   key={i} 
+                   id={"new-channel-" + i}>{channel}</div>
             )
           }
         </div>
