@@ -68,17 +68,20 @@ export const getVids = async (req, res) => {
 
 export const postChannel = async (req, res) => {
   const channelName = '1Veritasium'
-  const channelToInsert = new ChannelScheme({ name: channelName, 
+  const _user = req.body.user
+  const _channelArray = req.body.channelArray
+
+  const channelToInsert = new ChannelScheme({ name: _user, 
                                               pid: 'oI_X2cMHNe0', 
                                               recentVideos: []})
 
-  await channelToInsert.save((err, data) => {
-    if (err) {
-      console.log('Error inserting document:', err, data)
-      res.status(501).send('Failed to insert document')
-    } else {
-      console.log('Added document')
-      res.status(200).send('Added document')
-    }
-  })
+  //await channelToInsert.save((err, data) => {
+    //if (err) {
+      //console.log('Error inserting document:', err, data)
+      //res.status(501).send('Failed to insert document')
+    //} else {
+      //console.log('Added document')
+      //res.status(200).send('Added document')
+    //}
+  //})
 }

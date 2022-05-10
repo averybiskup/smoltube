@@ -8,9 +8,9 @@ const postChannels = async (user, channels) => {
     user: user,
     channelArray: channels
   }
+  console.log(params)
   
   let res = await axios.post('/postchannels', params)
-  console.log(res)
 }
 
 const Home = () => {
