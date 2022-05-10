@@ -70,3 +70,37 @@
 body {
   margin: 0px;  
 }
+
+#user-name-input-container {
+  position: absolute;  
+  top: 10px;
+  right: 10px;
+}
+
+#user-name-input {
+  border: none;
+  border-right: 1px solid black;
+  padding: 3px;
+  width: 75px;
+  height: 20px;
+}
+
+#user-name-input:focus {
+  outline: none;
+  background-color: black;
+  color: white;
+}
+
+#user-name-button {
+  border: none;
+  background-color: white;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+#user-name-button:hover {
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  height: 26px;
+}

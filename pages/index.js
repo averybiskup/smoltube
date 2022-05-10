@@ -8,15 +8,19 @@ const postChannels = async (user, channels) => {
     user: user,
     channelArray: channels
   }
-  console.log(params)
   
   let res = await axios.post('/postchannels', params)
+}
+
+const login = async (user) => {
+  let res = await axios.get('/login?username=' + user)
 }
 
 const Home = () => {
 
   const [newChannel, setNewChannel] = useState('')
   const [channels, setChannels] = useState([])
+  const [user, setUser] = useState('')
 
   const addChannel = (name) => {
     if (channels.indexOf(name) == -1) {
@@ -33,6 +37,15 @@ const Home = () => {
 
   return (
     <div id="home-container">
+      <div id="user-name-input-container">
+        <input onChange={(e) => { setUser(e.target.value) }}
+               type="text"  
+               placeholder="user name" 
+               id="user-name-input"
+               value={user} />
+        <button id="user-name-button" onClick={() => { login(user) }}>sign in</button>
+        
+      </div>
       <div id="home-input-container">
         <input onChange={(e) => { setNewChannel(e.target.value) }} 
                id="home-input" 

@@ -75,8 +75,8 @@ export const getVids = async (req, res) => {
   });
 };
 
-export const postUser = async (req, res) => {
-  const _userName = req.body.userName  
+export const login = async (req, res) => {
+  const _userName = req.query.username
   const _joinDate = Date()
   console.log(_userName, _joinDate)
 }

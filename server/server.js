@@ -3,7 +3,8 @@ import next from 'next'
 import bodyParser from 'body-parser'
 import { getChannelPID, 
          getVids, 
-         postChannel } from './controller.js'
+         postChannel,
+         login } from './controller.js'
 
 const port = parseInt(process.env.PORT, 10) || 3000
 const dev = process.env.NODE_ENV !== 'production'
@@ -19,6 +20,7 @@ app.prepare().then(() => {
   server.get('/getvids',       getVids)
 
   server.post('/postchannels', postChannel)
+  server.get('/login', login)
 
   server.all('*', (req, res) => {
     return handle(req, res)
