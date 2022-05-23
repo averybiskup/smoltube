@@ -14,8 +14,22 @@ const postChannels = async (user, channels) => {
 }
 
 // Check if user exists on server, and login if so
+
+const signup = async (user) => {
+  let res = await axios.post('/signup?username=' + user)
+}
+
 const login = async (user) => {
   let res = await axios.get('/login?username=' + user)
+}
+
+const showSignUp = (show) => {
+  const but = document.getElementById("new-user-name-button")  
+  if (show) {
+    but.style.display = 'block'
+  } else {
+    but.style.display = 'none'
+  }
 }
 
 const Home = () => {
@@ -23,6 +37,7 @@ const Home = () => {
   const [newChannel, setNewChannel] = useState('')
   const [channels, setChannels] = useState([])
   const [user, setUser] = useState('')
+  const [userType, setUserType] = useState('')
 
   // State modification helper function
   const addChannel = (name) => {
@@ -48,7 +63,11 @@ const Home = () => {
                id="user-name-input"
                value={user} />
         <button id="user-name-button" 
-                onClick={() => { login(user) }}>sign in</button>
+                onClick={() => { signup(user) }}
+                >sign up</button>
+        <button id="new-user-name-button" 
+                onClick={() => { login(user) }}
+                >sign in</button>
       </div>
       <div id="home-input-container">
         <input onChange={(e) => { setNewChannel(e.target.value) }} 

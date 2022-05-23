@@ -20,6 +20,7 @@
   width: 400px;
 }
 
+
 #home-input:focus {
   outline: none;
 }
@@ -75,6 +76,7 @@ body {
   position: absolute;  
   top: 10px;
   right: 10px;
+  display: flex;
 }
 
 #user-name-input {
@@ -91,16 +93,24 @@ body {
   color: white;
 }
 
-#user-name-button {
+#home-signin-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#user-name-button, #new-user-name-button {
   border: none;
   background-color: white;
   padding-left: 10px;
   padding-right: 10px;
-}
-
-#user-name-button:hover {
-  background-color: black;
-  color: white;
-  cursor: pointer;
   height: 26px;
 }
+
+
+#user-name-button:hover, #new-user-name-button:hover {
+  cursor: pointer;
+  background-color: black;
+  color: white;
+}
+

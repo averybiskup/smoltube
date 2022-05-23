@@ -6,9 +6,7 @@ const User = new Schema({
   name: {
     type: String
   },
-  joinDate: {
-    type: Date  
-  },
+  subs: [String]
 })
 
 const UserSchema = mongoose.model("users", User)

@@ -75,9 +75,25 @@ export const getVids = async (req, res) => {
   });
 };
 
+export const signup = async (req, res) => {
+  const _username = req.query.username
+  const newUser = new UserSchema({
+    name: _username,
+    subs: []
+  })
+  await newUser.save((err, data) => {
+    if (err) {
+      console.log(err)  
+      res.status(505).send('Trouble inserting user')
+    } else {
+      console.log(_username, ' - Signed up!')
+      res.status(200).send('Added user')
+    }
+  })
+}
+
 export const login = async (req, res) => {
   const _userName = req.query.username
-  const _joinDate = Date()
   console.log(_userName, _joinDate)
 }
 
