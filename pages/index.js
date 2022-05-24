@@ -13,14 +13,40 @@ const postChannels = async (user, channels) => {
   let res = await axios.post('/postchannels', params)
 }
 
-// Check if user exists on server, and login if so
+
+const setUserCookie = (user) => {
+  document.cookies="user=" + user
+}
+
+const getUserCookie = () => {
+  const user = document.cookie.split("=")[1]
+  if (user) {
+    return user
+  } else {
+    return null  
+  }
+}
 
 const signup = async (user) => {
-  let res = await axios.post('/signup?username=' + user)
+  await axios.post('/signup?username=' + user)
+    .then(() => {
+      console.log("User signed up")
+      setUserCookie(user)
+    })
+    .catch((err) => {
+      console.log('Error signing up')
+    })
 }
 
 const login = async (user) => {
-  let res = await axios.get('/login?username=' + user)
+  await axios.get('/login?username=' + user)
+    .then(() => {
+      console.log("User logged in")
+      setUserCookie(user)
+    })
+    .catch((err) => {
+      console.log('Error logging in')
+    })
 }
 
 const showSignUp = (show) => {
