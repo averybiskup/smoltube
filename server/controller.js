@@ -99,7 +99,7 @@ export const login = async (req, res) => {
     if (err || data === null) {
       res.status(400).send("User not found")  
     } else {
-      res.status(200).send("User found")  
+      res.status(200).send(data)
     }
   })
 }

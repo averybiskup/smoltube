@@ -1,9 +1,10 @@
 import '../styles/globals.css'
 import Home from './index'
 
-const MyApp = () => {
+const MyApp = ({ Component, pageProps }) => {
+
   return (
-    <Home />
+    <Component {...pageProps} />
   )
 }
 

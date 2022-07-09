@@ -1,6 +1,8 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import axios from 'axios'
+import LoginBox from '../components/LoginBox'
+import Cookies from 'cookies'
 
 // Add a channel to user's profile
 const postChannels = async (user, channels) => {
@@ -14,21 +16,6 @@ const postChannels = async (user, channels) => {
 }
 
 
-const setUserCookie = (user) => {
-  const cookie = "user=" + user
-  console.log("Setting cookie: " + cookie) 
-  document.cookie = cookie
-}
-
-const getUserCookie = () => {
-  const user = document.cookie.split("=")[1]
-  if (user) {
-    return user
-  } else {
-    return null  
-  }
-}
-
 const signup = async (user) => {
   await axios.post('/signup?username=' + user)
     .then(() => {
@@ -40,15 +27,6 @@ const signup = async (user) => {
     })
 }
 
-const login = async (user) => {
-  await axios.get('/login?username=' + user)
-    .then((res) => {
-      setUserCookie(user)
-    })
-    .catch((err) => {
-      console.log('Error logging in')
-    })
-}
 
 const showSignUp = (show) => {
   const but = document.getElementById("new-user-name-button")  
@@ -59,12 +37,11 @@ const showSignUp = (show) => {
   }
 }
 
-const Home = () => {
+const Home = ({ user }) => {
 
   const [newChannel, setNewChannel] = useState('')
   const [channels, setChannels] = useState([])
-  const [user, setUser] = useState('')
-  const [userType, setUserType] = useState('')
+
 
   // State modification helper function
   const addChannel = (name) => {
@@ -83,19 +60,7 @@ const Home = () => {
 
   return (
     <div id="home-container">
-      <div id="user-name-input-container">
-        <input onChange={(e) => { setUser(e.target.value) }}
-               type="text"  
-               placeholder="user name" 
-               id="user-name-input"
-               value={user} />
-        <button id="user-name-button" 
-                onClick={() => { signup(user) }}
-                >sign up</button>
-        <button id="new-user-name-button" 
-                onClick={() => { login(user) }}
-                >sign in</button>
-      </div>
+      <LoginBox user={user} />
       <div id="home-input-container">
         <input onChange={(e) => { setNewChannel(e.target.value) }} 
                id="home-input" 
@@ -120,6 +85,11 @@ const Home = () => {
       </div>
     </div>
   )
+}
+
+Home.getInitialProps = async ({ req, res }) => {
+
+  return { user: req.cookies.user }
 }
 
 export default Home
