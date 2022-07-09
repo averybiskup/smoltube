@@ -15,7 +15,9 @@ const postChannels = async (user, channels) => {
 
 
 const setUserCookie = (user) => {
-  document.cookies="user=" + user
+  const cookie = "user=" + user
+  console.log("Setting cookie: " + cookie) 
+  document.cookie = cookie
 }
 
 const getUserCookie = () => {
@@ -40,8 +42,7 @@ const signup = async (user) => {
 
 const login = async (user) => {
   await axios.get('/login?username=' + user)
-    .then(() => {
-      console.log("User logged in")
+    .then((res) => {
       setUserCookie(user)
     })
     .catch((err) => {

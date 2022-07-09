@@ -84,7 +84,7 @@ export const signup = async (req, res) => {
   await newUser.save((err, data) => {
     if (err) {
       console.log(err)  
-      res.status(505).send('Trouble inserting user')
+      res.status(500).send('Trouble inserting user')
     } else {
       console.log(_username, ' - Signed up!')
       res.status(200).send('Added user')
@@ -94,7 +94,14 @@ export const signup = async (req, res) => {
 
 export const login = async (req, res) => {
   const _userName = req.query.username
-  console.log(_userName, _joinDate)
+
+  UserSchema.findOne({ "name": _userName }, (err, data) => {
+    if (err || data === null) {
+      res.status(400).send("User not found")  
+    } else {
+      res.status(200).send("User found")  
+    }
+  })
 }
 
 export const postChannel = async (req, res) => {
