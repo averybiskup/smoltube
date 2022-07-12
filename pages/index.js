@@ -41,7 +41,7 @@ const Home = ({ user }) => {
 
   const [newChannel, setNewChannel] = useState('')
   const [channels, setChannels] = useState([])
-
+  const [curUser, setCurUser] = useState(user)
 
   // State modification helper function
   const addChannel = (name) => {
@@ -60,7 +60,7 @@ const Home = ({ user }) => {
 
   return (
     <div id="home-container">
-      <LoginBox user={user} />
+      <LoginBox user={curUser} updateUser={setCurUser} />
       <div id="home-input-container">
         <input onChange={(e) => { setNewChannel(e.target.value) }} 
                id="home-input" 
