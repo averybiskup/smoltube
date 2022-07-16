@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import axios from 'axios'
 
 // Add a channel to user's profile
 const postChannels = async (user, channels) => {
@@ -8,7 +9,7 @@ const postChannels = async (user, channels) => {
     channelArray: channels
   }
   
-  let res = await axios.post('/postchannels', params)
+  let res = await axios.post('/addchannels', params)
 }
 
 const ChannelInput = (props) => {
@@ -24,7 +25,7 @@ const ChannelInput = (props) => {
   }
 
   const saveChannels = (channelsToAdd) => {
-    postChannels('testuser', channelsToAdd)
+    postChannels(user, channelsToAdd)
     for (let i = 0; i < channelsToAdd.length; i++) {
       setChannels([])
     }

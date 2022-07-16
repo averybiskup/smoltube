@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import { useState } from 'react'
-import axios from 'axios'
 import LoginBox from '../components/LoginBox'
 import Cookies from 'cookies'
 import ChannelInput from '../components/ChannelInput'
@@ -15,7 +14,6 @@ const signup = async (user) => {
       console.log('Error signing up')
     })
 }
-
 
 const showSignUp = (show) => {
   const but = document.getElementById("new-user-name-button")  

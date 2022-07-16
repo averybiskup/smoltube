@@ -5,7 +5,8 @@ import { getChannelPID,
          getVids, 
          postChannel,
          login,
-         signup} from './controller.js'
+         signup,
+         addChannels } from './controller.js'
 
 const port = parseInt(process.env.PORT, 10) || 3000
 const dev = process.env.NODE_ENV !== 'production'
@@ -21,6 +22,7 @@ app.prepare().then(() => {
   server.get('/getvids',       getVids)
 
   server.post('/postchannels', postChannel)
+  server.post('/addchannels', addChannels)
   server.post('/signup', signup)
   server.get('/login', login)
 

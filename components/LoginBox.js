@@ -7,8 +7,6 @@ const setUserCookie = (user) => {
   cc.set("user", user)
 }
 
-
-
 const LoginBox = (props) => {
 
   const [user, setUser] = useState('')

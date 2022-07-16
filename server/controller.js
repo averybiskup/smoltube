@@ -104,6 +104,25 @@ export const login = async (req, res) => {
   })
 }
 
+export const addChannels = async (req, res) => {
+  const _userName = req.body.user
+  const channels  = req.body.channelArray
+
+  UserSchema.updateOne(
+    { "name": _userName },
+    { $push: { subs: channels } },
+    (err, result) => {
+      if (err) {
+        console.log("Failed to add subs: ", err)
+        res.status(500).send(err)  
+      } else {
+        console.log("Added subs: ", channels)
+        res.status(200).send(result)  
+      }
+    }
+  )
+}
+
 export const postChannel = async (req, res) => {
   const channelName = "1Veritasium";
   const _user = req.body.user;
@@ -115,13 +134,13 @@ export const postChannel = async (req, res) => {
     recentVideos: [],
   });
 
-  //await channelToInsert.save((err, data) => {
-  //if (err) {
-  //console.log('Error inserting document:', err, data)
-  //res.status(501).send('Failed to insert document')
-  //} else {
-  //console.log('Added document')
-  //res.status(200).send('Added document')
-  //}
-  //})
+  await channelToInsert.save((err, data) => {
+    if (err) {
+      console.log('Error inserting document:', err, data)
+      res.status(501).send('Failed to insert document')
+    } else {
+      console.log('Added document: ', data)
+      res.status(200).send('Added document')
+    }
+  })
 };
