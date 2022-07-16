@@ -3,18 +3,7 @@ import { useState } from 'react'
 import axios from 'axios'
 import LoginBox from '../components/LoginBox'
 import Cookies from 'cookies'
-
-// Add a channel to user's profile
-const postChannels = async (user, channels) => {
-
-  const params = {
-    user: user,
-    channelArray: channels
-  }
-  
-  let res = await axios.post('/postchannels', params)
-}
-
+import ChannelInput from '../components/ChannelInput'
 
 const signup = async (user) => {
   await axios.post('/signup?username=' + user)
@@ -39,8 +28,6 @@ const showSignUp = (show) => {
 
 const Home = ({ user }) => {
 
-  const [newChannel, setNewChannel] = useState('')
-  const [channels, setChannels] = useState([])
   const [curUser, setCurUser] = useState(user)
 
   // State modification helper function
@@ -61,34 +48,12 @@ const Home = ({ user }) => {
   return (
     <div id="home-container">
       <LoginBox user={curUser} updateUser={setCurUser} />
-      <div id="home-input-container">
-        <input onChange={(e) => { setNewChannel(e.target.value) }} 
-               id="home-input" 
-               type="text" 
-               placeholder="channel name"
-               value={newChannel} />
-        <button id="home-add-button" 
-                onClick={() => { addChannel(newChannel) }}>add</button>
-        <button id="home-save-button" 
-                onClick={() => { saveChannels(channels) }}>save</button>
-      </div>
-      <div id="new-channels-container">
-        <div id="new-channels-list">
-          {
-            channels.map((channel, i) => 
-              <div className="new-channel-item" 
-                   key={i} 
-                   id={"new-channel-" + i}>{channel}</div>
-            )
-          }
-        </div>
-      </div>
+      <ChannelInput user={curUser} />
     </div>
   )
 }
 
 Home.getInitialProps = async ({ req, res }) => {
-
   return { user: req.cookies.user }
 }
 
