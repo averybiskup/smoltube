@@ -30,21 +30,6 @@ const Home = ({ user }) => {
 
   const [curUser, setCurUser] = useState(user)
 
-  // State modification helper function
-  const addChannel = (name) => {
-    if (channels.indexOf(name) == -1) {
-      setChannels(channels => [...channels, name])  
-    }
-  }
-
-  // State modification helper function
-  const saveChannels = (channelsToAdd) => {
-    postChannels('testuser', channelsToAdd)
-    for (let i = 0; i < channelsToAdd.length; i++) {
-      setChannels([])
-    }
-  }
-
   return (
     <div id="home-container">
       <LoginBox user={curUser} updateUser={setCurUser} />

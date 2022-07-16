@@ -17,6 +17,19 @@ const ChannelInput = (props) => {
   const [newChannel, setNewChannel] = useState('')
   const [channels, setChannels] = useState([])
 
+  const addChannel = (name) => {
+    if (channels.indexOf(name) == -1) {
+      setChannels(channels => [...channels, name])  
+    }
+  }
+
+  const saveChannels = (channelsToAdd) => {
+    postChannels('testuser', channelsToAdd)
+    for (let i = 0; i < channelsToAdd.length; i++) {
+      setChannels([])
+    }
+  }
+
   return (
     <>
       <div id="home-input-container">
