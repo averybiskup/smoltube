@@ -16,11 +16,8 @@ const LoginBox = (props) => {
     await axios.get('/login?username=' + user)
       .then((res) => {
         setUserCookie(user)
-        console.log('Set user from: ', user)
         setUser(user)
         props.updateUser(user)
-        console.log('Set user to:', user)
-        console.log(props)
         //setChannels(user.data.subs)
       })
       .catch((err) => {

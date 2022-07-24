@@ -144,3 +144,20 @@ export const postChannel = async (req, res) => {
     }
   })
 };
+
+export const getSubs = async (req, res) => {
+  const _userName = req.query.userName
+
+  console.log('Getting subs for: ', _userName)
+
+  UserSchema.findOne({ "name": _userName }, (err, result) => {
+    if (err || result === null) {
+      console.log('Failed to get subs', result)
+      res.status(500).send('Failed to get subs')  
+    } else {
+      console.log('Got subs!') 
+      res.status(200).send(result)
+    }
+  })
+}
+

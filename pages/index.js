@@ -3,6 +3,8 @@ import { useState } from 'react'
 import LoginBox from '../components/LoginBox'
 import Cookies from 'cookies'
 import ChannelInput from '../components/ChannelInput'
+import SubList from '../components/SubList'
+import getSubs from '../components/getSubs'
 
 const signup = async (user) => {
   await axios.post('/signup?username=' + user)
@@ -32,12 +34,16 @@ const Home = ({ user }) => {
     <div id="home-container">
       <LoginBox user={curUser} updateUser={setCurUser} />
       <ChannelInput user={curUser} />
+      <SubList user={curUser} />
     </div>
   )
 }
 
 Home.getInitialProps = async ({ req, res }) => {
-  return { user: req.cookies.user }
+
+  const curUser = req.cookies.user
+
+  return { user: curUser }
 }
 
 export default Home
