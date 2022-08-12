@@ -1,34 +1,23 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+### IDEA  
 
-## Getting Started
+smol version of youtube where the only videos that show up are from the people
+you subscribe too, and only the recent ones you haven't seen.  
 
-First, run the development server:
+the idea is to scroll less, and waste less time watching youtube videos because
+you know what to watch and don't need to find something  
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+this idea comes from a rule in the book Atomic Habits, which says whenever you
+do something like watch netflix, you should always know what to watch before
+sitting down in order to spend less time trying to find something  
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### TODO  
+- [x] hook up to youtube api in order to get recent videos given channel id  
+- [x] hook up mongodb to store users' youtube channel  
+- [x] create front end inputs for users to add channels  
+- [ ] finish backend to support adding video lists by user
+- [ ] create video viewing page  
+- [ ] create autoplay feature that will play users videos from the day
+  automatically  
+- [ ] make a feature where users can limit videos per day  
+- [ ] add login so people can save their subscriptions
+- [ ] create list to show subscriptions
