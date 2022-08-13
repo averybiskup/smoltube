@@ -16,13 +16,10 @@ if (!cached) {
 
 async function dbConnect() {
   if (cached.conn) {
-    console.log("Using cached connection")
     return cached.conn
   }
 
   if (!cached.promise) {
-    console.log("Creating new connection")
-
     const opts = {
       bufferCommands: false,
     }
